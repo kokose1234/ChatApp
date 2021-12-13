@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="cd ../../Tools&#xD;&#xA;python packet_type_maker.py" />
+    <Exec Command="cd ../../Tools&#xD;&#xA;python packet_type_maker.py&#xD;&#xA;echo 패킷Id 생성 완료" />
   </Target>
 
 </Project>
