@@ -1,8 +1,7 @@
-namespace ChatApp.Common.Net.Packet.Header
+namespace ChatApp.Common.Net.Packet.Header;
+
+public enum ClientHeader : uint
 {
-    public enum ClientHeader : uint
-    {
-        NullPacket = 0,
-        ClientAccountRegister = 4183544625,
-    }
+    NullPacket = 0,
+    ClientAccountRegister = 4183544625,
 }
