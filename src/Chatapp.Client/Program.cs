@@ -1,4 +1,4 @@
-namespace Chatapp.Client
+namespace ChatApp.Client
 {
     internal static class Program
     {
@@ -9,7 +9,7 @@ namespace Chatapp.Client
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new LoginForm());
         }
     }
 }
