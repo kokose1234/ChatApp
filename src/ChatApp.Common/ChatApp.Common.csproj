@@ -9,11 +9,16 @@
   <ItemGroup>
     <None Remove="Protos\ClientAccountRegister.proto" />
     <None Remove="Protos\ServerAccountRegister.proto" />
+    <None Remove="Protos\ServerHandshake.proto" />
   </ItemGroup>
 
   <ItemGroup>
     <AdditionalFiles Include="Protos\ClientAccountRegister.proto" />
     <AdditionalFiles Include="Protos\ServerAccountRegister.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="Protos\ServerHandshake.proto" />
   </ItemGroup>
 
   <ItemGroup>

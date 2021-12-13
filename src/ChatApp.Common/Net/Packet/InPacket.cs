@@ -7,9 +7,9 @@ public class InPacket : AbstractPacket
     public uint PacketLen { get; }
     public uint Header { get; }
 
-    public InPacket(byte[] buffer, bool readSize = true, bool readHeader = true)
+    public InPacket(byte[] buffer, int size, bool readSize = true, bool readHeader = true)
     {
-        stream = new MemoryStream(buffer, false);
+        stream = new MemoryStream(buffer, 0, size, false);
 
         if (readSize)
         {

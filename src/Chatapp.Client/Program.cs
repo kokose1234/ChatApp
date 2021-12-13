@@ -1,3 +1,5 @@
+using ChatApp.Client.Net;
+
 namespace ChatApp.Client;
 
 internal static class Program
@@ -6,8 +8,11 @@ internal static class Program
     ///  The main entry point for the application.
     /// </summary>
     [STAThread]
-    static void Main()
+    private static void Main()
     {
+        PacketHandlers.RegisterPackets();
+        _ = ChatClient.Instance;
+
         ApplicationConfiguration.Initialize();
         Application.Run(new LoginForm());
     }
