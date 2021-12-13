@@ -5,7 +5,7 @@ namespace ChatApp.Client.Data;
 internal sealed record Setting
 {
     [JsonIgnore]
-    private static readonly Lazy<Setting> Lazy = new(JsonConvert.DeserializeObject<Setting>(File.ReadAllText("./Setting.json")));
+    private static readonly Lazy<Setting> Lazy = new(JsonConvert.DeserializeObject<Setting>(File.ReadAllText("./ServerSetting.json")));
 
     [JsonIgnore]
     internal static Setting Value => Lazy.Value;
