@@ -1,4 +1,5 @@
-﻿using ChatApp.Server.Net;
+﻿using ChatApp.Server.Database;
+using ChatApp.Server.Net;
 
 namespace ChatApp.Server;
 
@@ -8,6 +9,7 @@ internal static class Program
     {
         var server = new ChatServer();
         PacketHandlers.RegisterPackets();
+        DatabaseManager.Setup();
         server.Start();
 
         while (true)
