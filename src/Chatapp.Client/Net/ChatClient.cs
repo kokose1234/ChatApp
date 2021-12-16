@@ -13,7 +13,6 @@ internal class ChatClient : TcpClient
 
     private byte[] _sendKey = null!;
     private byte[] _recvKey = null!;
-    private bool _stop;
     private bool _initialized;
 
     internal static ChatClient Instance => Lazy.Value;
@@ -22,7 +21,6 @@ internal class ChatClient : TcpClient
 
     internal void DisconnectAndStop()
     {
-        _stop = true;
         DisconnectAsync();
         while (IsConnected) Thread.Yield();
     }

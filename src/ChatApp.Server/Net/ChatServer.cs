@@ -10,7 +10,7 @@ namespace ChatApp.Server.Net;
 internal class ChatServer : TcpServer
 {
     internal static ChatServer Instance { get; private set; } = null!;
-    internal static ConcurrentDictionary<string, ChatSession> Sessions { get; } = new();
+    internal new static ConcurrentDictionary<string, ChatSession> Sessions { get; } = new();
 
     public ChatServer() : base(IPAddress.Any, 12000) => Instance = this;
 

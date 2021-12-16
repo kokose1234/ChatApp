@@ -1,5 +1,8 @@
-﻿using System.Reflection;
-using ChatApp.Common.Net.Packet;
+﻿using ChatApp.Common.Net.Packet;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace ChatApp.Client.Net;
 
@@ -9,17 +12,14 @@ internal static class PacketHandlers
 
     internal static void RegisterPackets()
     {
-        var handlers = new Dictionary<uint, AbstractHandler>();
-        foreach (var type in Assembly.GetExecutingAssembly().GetTypes())
-        {
-            if (Attribute.IsDefined(type, typeof(PacketHandler)))
-                handlers.Add(((PacketHandler)type.GetCustomAttributes(typeof(PacketHandler), true).FirstOrDefault()!)?.Header ?? 0,
-                    (AbstractHandler)Activator.CreateInstance(type)!);
-        }
+        var handlers = Assembly.GetExecutingAssembly().GetTypes()
+                               .Where(type => Attribute.IsDefined(type, typeof(PacketHandler)))
+                               .ToDictionary(type => ((PacketHandler)type.GetCustomAttributes(typeof(PacketHandler), true).FirstOrDefault()!).Header,
+                                   type => (AbstractHandler)Activator.CreateInstance(type)!);
 
-        foreach (var kvp in handlers.Where(kvp => !Packets.ContainsKey(kvp.Key)))
+        foreach (var (packetId, handler) in handlers.Where(kvp => !Packets.ContainsKey(kvp.Key)))
         {
-            Packets.Add(kvp.Key, kvp.Value);
+            Packets.Add(packetId, handler);
         }
     }
 

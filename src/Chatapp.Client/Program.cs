@@ -14,6 +14,6 @@ internal static class Program
         _ = ChatClient.Instance;
 
         ApplicationConfiguration.Initialize();
-        Application.Run(new LoginForm());
+
     }
 }

@@ -13,7 +13,9 @@
   <ItemGroup>
     <PackageReference Include="ReactiveUI" Version="17.1.9" />
     <PackageReference Include="ReactiveUI.Events.Winforms" Version="15.1.1" />
+    <PackageReference Include="ReactiveUI.Fody" Version="17.1.9" />
     <PackageReference Include="ReactiveUI.WinForms" Version="17.1.9" />
+    <PackageReference Include="Splat" Version="14.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,14 +23,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
-    <Folder Include="Net\Handlers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="ClientSetting.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
   </ItemGroup>
 
 </Project>
