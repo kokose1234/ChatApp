@@ -5,8 +5,17 @@ namespace ChatApp.Server;
 
 internal static class Program
 {
+    internal static ChatServer ChatServer
+    {
+        get => default;
+        set
+        {
+        }
+    }
+
     private static void Main(string[] args)
     {
+        Console.Title = "Chat Server";
         var server = new ChatServer();
         PacketHandlers.RegisterPackets();
         DatabaseManager.Setup();

@@ -1,0 +1,13 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "ChatApp.Common.Net.Packet.Data.Server";
+
+message ServerLogin {
+	LoginResult result = 1;
+
+    enum LoginResult {
+	    SUCCESS = 0;
+	    FAILED_WRONG_INFO = 1;
+	    FAILED_UNKOWN = 2;
+    }
+}

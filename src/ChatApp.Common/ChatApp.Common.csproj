@@ -10,11 +10,21 @@
 
   <ItemGroup>
     <None Remove="Protos\ClientAccountRegister.proto" />
+    <None Remove="Protos\ClientChat.proto" />
+    <None Remove="Protos\ClientLogin.proto" />
     <None Remove="Protos\ServerAccountRegister.proto" />
+    <None Remove="Protos\ServerChat.proto" />
     <None Remove="Protos\ServerHandshake.proto" />
+    <None Remove="Protos\ServerLogin.proto" />
+    <None Remove="Protos\ServerMessage.proto" />
   </ItemGroup>
 
   <ItemGroup>
+    <AdditionalFiles Include="Protos\ServerMessage.proto" />
+    <AdditionalFiles Include="Protos\ServerChat.proto" />
+    <AdditionalFiles Include="Protos\ClientChat.proto" />
+    <AdditionalFiles Include="Protos\ServerLogin.proto" />
+    <AdditionalFiles Include="Protos\ClientLogin.proto" />
     <AdditionalFiles Include="Protos\ClientAccountRegister.proto" />
     <AdditionalFiles Include="Protos\ServerAccountRegister.proto" />
   </ItemGroup>

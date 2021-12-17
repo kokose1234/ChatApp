@@ -12,7 +12,7 @@ public class ObjectPool<T> where T : class, new()
         _generator = generator ?? throw new ArgumentNullException(nameof(generator));
         _objects = new ConcurrentBag<T>();
 
-        for (var i = 0; i < 10; i++)
+        for (var i = 0; i < 30; i++)
         {
             _objects.Add(_generator());
         }

@@ -14,29 +14,52 @@ internal class ChatClient : TcpClient
     private byte[] _sendKey = null!;
     private byte[] _recvKey = null!;
     private bool _initialized;
+    private bool _stop;
 
     internal static ChatClient Instance => Lazy.Value;
 
-    internal ChatClient() : base(Setting.Value.ServerAddress, Setting.Value.ServerPort) { }
+    internal AbstractHandler AbstractHandler
+    {
+        get => default;
+        set
+        {
+        }
+    }
+
+    internal Handlers.ServerMessageHandler ServerMessageHandler
+    {
+        get => default;
+        set
+        {
+        }
+    }
+
+    internal Handlers.ChatHandler ChatHandler
+    {
+        get => default;
+        set
+        {
+        }
+    }
+
+    internal ChatClient() : base(Setting.Value.ServerAddress, Setting.Value.ServerPort) => base.ConnectAsync();
 
     internal void DisconnectAndStop()
     {
+        _stop = true;
         DisconnectAsync();
         while (IsConnected) Thread.Yield();
     }
 
-    protected override void OnConnected()
-    {
-        Console.WriteLine($"ChatSession이 Id {Id}로 생성됨.");
-    }
-
     protected override void OnDisconnected()
     {
-        Console.WriteLine($"ChatSession {Id}와 연결이 끊어짐.");
+        //Console.WriteLine($"ChatSession {Id}와 연결이 끊어짐.");
+        if (!_stop)
+            ConnectAsync();
     }
 
     protected override void OnError(SocketError error)
-    {
+    { 
         Console.WriteLine($"ChatSession({Id}) 오류 발생 {error}");
         DisconnectAndStop();
     }
@@ -48,8 +71,26 @@ internal class ChatClient : TcpClient
             if (_initialized)
             {
                 using var packet = new InPacket(Decrypt(buffer, (int)size), (int)size);
-                var headerName = Enum.GetName(typeof(ServerHeader), packet.Header) ?? string.Format($"0x{packet.Header:X4}");
-                Console.WriteLine($"[S->C] [{headerName}]\r\n{packet}");
+                // var headerName = Enum.GetName(typeof(ServerHeader), packet.Header) ?? string.Format($"0x{packet.Header:X4}");
+                // Console.WriteLine($"[S->C] [{headerName}]\r\n{packet}");
+
+                if (PacketHandlers.GetHandler(packet.Header, out var handler))
+                {
+                    if (handler != null)
+                    {
+                        handler.Handle(this, packet);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"패킷 Id {packet.Header}의 패킷 핸들러가 존재하지 않음.");
+                    }
+                }
+                else
+                {
+                    Console.Title = "Disconnected";
+                    //Console.WriteLine("알 수 없는 패킷을 수신함.");
+                    Environment.Exit(0);
+                }
             }
             else
             {
@@ -82,7 +123,7 @@ internal class ChatClient : TcpClient
 
         buffer.WriteLength();
         base.SendAsync(Encrypt(buffer.Buffer));
-        Console.WriteLine($"[C->S] [{headerName}]\r\n{buffer}");
+        //Console.WriteLine($"[C->S] [{headerName}]\r\n{buffer}");
         buffer.Dispose();
     }
 

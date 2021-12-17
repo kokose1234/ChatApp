@@ -22,6 +22,30 @@ internal static class DatabaseManager
         }
     }
 
+    internal static Net.Handlers.AccountRegisterHandler AccountRegisterHandler
+    {
+        get => default;
+        set
+        {
+        }
+    }
+
+    public static Net.Handlers.LoginHandler LoginHandler
+    {
+        get => default;
+        set
+        {
+        }
+    }
+
+    public static Net.Handlers.ChatHandler ChatHandler
+    {
+        get => default;
+        set
+        {
+        }
+    }
+
     internal static void Setup()
     {
         var connection = new MySqlConnection($"Server={Setting.Value.Host};Port={Setting.Value.Port};Database=chat;User={Setting.Value.Username};Password={Setting.Value.Password}");

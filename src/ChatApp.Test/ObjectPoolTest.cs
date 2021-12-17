@@ -21,7 +21,6 @@ namespace ChatApp.Test
                     var message = Pool.Get();
                     message.UserName = $"test-username-{i}";
                     message.Password = $"test-password-{i}";
-                    message.MacAddress = $"test-mac-{i}";
 
                     packet.Encode(message);
                     Pool.Return(message);

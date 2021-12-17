@@ -1,7 +1,7 @@
-﻿using System.Collections.Concurrent;
-using System.Net;
-using ChatApp.Server.Managers;
+﻿using ChatApp.Server.Managers;
 using NetCoreServer;
+using System.Collections.Concurrent;
+using System.Net;
 using System.Net.Sockets;
 using LogLevel = NLog.LogLevel;
 
@@ -11,6 +11,14 @@ internal class ChatServer : TcpServer
 {
     internal static ChatServer Instance { get; private set; } = null!;
     internal new static ConcurrentDictionary<string, ChatSession> Sessions { get; } = new();
+
+    internal ChatSession ChatSession
+    {
+        get => default;
+        set
+        {
+        }
+    }
 
     public ChatServer() : base(IPAddress.Any, 12000) => Instance = this;
 

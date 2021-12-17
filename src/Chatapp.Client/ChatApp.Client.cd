@@ -1,4 +1,90 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ChatApp.Client.Data.WaitableJobs.LoginResult">
+    <Position X="8.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Data\WaitableJobs\LoginResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatApp.Client.Data.WaitableResult&lt;T&gt;">
+    <Position X="11" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAQAAAAAAAAgAAAAAAg=</HashCode>
+      <FileName>Data\WaitableResult.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatApp.Client.Net.Handlers.AccountRegisterHandler">
+    <Position X="12.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Net\Handlers\AccountRegisterHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatApp.Client.Net.Handlers.ChatHandler">
+    <Position X="14.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Net\Handlers\ChatHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatApp.Client.Net.Handlers.LoginHandler">
+    <Position X="7.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Net\Handlers\LoginHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatApp.Client.Net.Handlers.ServerMessageHandler">
+    <Position X="10" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Net\Handlers\ServerMessageHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatApp.Client.Net.AbstractHandler">
+    <Position X="11" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Net\AbstractHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatApp.Client.Net.ChatClient">
+    <Position X="13" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAYAAIAASGAAAAQAEAgAAAAAAAAAAABUAAAAwAAAAA=</HashCode>
+      <FileName>Net\ChatClient.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AbstractHandler" />
+      <Property Name="ServerMessageHandler" />
+      <Property Name="ChatHandler" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ChatApp.Client.Chat">
+    <Position X="5.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAIAAAACAAAAAAAAAAAEEAAAAAAAAAQAAAAAAIAAA=</HashCode>
+      <FileName>Chat.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ChatClient" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ChatApp.Client.Program">
+    <Position X="8.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AFEAAAAAAAQAAAAABAAAAFAAAAAAAQwAACAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Chat" />
+      <Property Name="LoginResult" />
+      <Property Name="WaitableResult" />
+      <Property Name="ChatClient" />
+      <Property Name="LoginHandler" />
+      <Property Name="AccountRegisterHandler" />
+    </ShowAsAssociation>
+  </Class>
   <Font Name="맑은 고딕" Size="9" />
 </ClassDiagram>

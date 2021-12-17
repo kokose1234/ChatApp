@@ -1,0 +1,8 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "ChatApp.Common.Net.Packet.Data.Server";
+
+message ServerChat {
+    string author = 1;
+    string message = 2;
+}

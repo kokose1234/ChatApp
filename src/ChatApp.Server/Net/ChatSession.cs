@@ -16,6 +16,17 @@ internal class ChatSession : TcpSession
     private readonly byte[] _sendKey;
     private readonly byte[] _recvKey;
 
+    internal string Name { get; set; }
+    internal bool IsAdmin { get; set; }
+
+    public AbstractHandler AbstractHandler
+    {
+        get => default;
+        set
+        {
+        }
+    }
+
     public ChatSession(TcpServer server) : base(server)
     {
         _sendKey = Randomizer.NextBytes(8);
@@ -79,14 +90,14 @@ internal class ChatSession : TcpSession
         }
     }
 
-    internal void Send(OutPacket buffer)
+    internal void Send(OutPacket buffer, bool closeStream = true)
     {
         var headerName = Enum.GetName(typeof(ServerHeader), buffer.Header) ?? string.Format($"0x{buffer.Header:X4}");
 
         buffer.WriteLength();
         base.SendAsync(Encrypt(buffer.Buffer), 0, buffer.Length);
         LogManager.GetPacketLogger().Info($"[S->C] [{headerName}]\r\n{buffer}");
-        buffer.Dispose();
+        if (closeStream) buffer.Dispose();
     }
 
     private byte[] Encrypt(IReadOnlyList<byte> buffer)

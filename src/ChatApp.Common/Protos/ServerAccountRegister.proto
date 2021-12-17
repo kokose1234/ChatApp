@@ -7,9 +7,7 @@ message ServerAccountRegister {
 
 	enum RegisterResult {
 		SUCCESS = 0;
-		FAIL_DUPLICATE_MAC = 1;
-		FAIL_DUPLICATE_USESRNAME = 2;
-		FAIL_BLOCKED = 3;
-		FAIL_UNKOWN = 4;
+		FAIL_DUPLICATE_USESRNAME = 1;
+		FAIL_UNKOWN = 2;
 	}
 }
